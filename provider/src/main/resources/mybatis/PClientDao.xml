@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huangjinlong.oauth2.provider.dao.PClientDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.huangjinlong.oauth2.provider.bean.entity.PClient">
+        <result column="id" property="id"/>
+        <result column="client_id" property="clientId"/>
+        <result column="resource_ids" property="resourceIds"/>
+        <result column="client_secret" property="clientSecret"/>
+        <result column="scope" property="scope"/>
+        <result column="access_token_validity_seconds" property="accessTokenValiditySeconds"/>
+        <result column="refresh_token_validity_seconds" property="refreshTokenValiditySeconds"/>
+        <result column="redirect_uri" property="redirectUri"/>
+        <result column="authorized_grant_types" property="authorizedGrantTypes"/>
+        <result column="grant_types" property="grantTypes"/>
+        <result column="status" property="status" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+        <result column="auto_approve_scope" property="autoApproveScope"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <select id="loadClientByClientId" resultMap="AllColumnMap">
+        SELECT *
+        FROM p_client
+        WHERE client_id=#{clientId} AND status='AUDITED'
+    </select>
+</mapper>
+
