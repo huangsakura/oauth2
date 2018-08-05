@@ -138,7 +138,7 @@ public class POClient implements ClientDetails, Serializable {
         /**
          * 相关链接 https://www.ktanx.com/blog/p/4917
          */
-        return "{noop}"+clientSecret;
+        return clientSecret;
     }
 
     @Override

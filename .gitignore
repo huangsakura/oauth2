@@ -1,0 +1,6 @@
+*.class
+templates
+/provider/target/classes/mybatis
+classes
+dictionaries
+.idea

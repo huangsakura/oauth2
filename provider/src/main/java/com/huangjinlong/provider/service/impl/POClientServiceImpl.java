@@ -44,8 +44,8 @@ public class POClientServiceImpl implements POClientService, ClientDetailsServic
 
         Object o = redisTemplate.opsForValue().get(redisKey);
         if (o != null) {
-            log.info("从redis中返回client_id为{}的客户信息",clientId);
-            return (POClient)o;
+            //log.info("从redis中返回client_id为{}的客户信息",clientId);
+            //return (POClient)o;
         }
         POClient pClient = poClientDao.loadClientByClientId(clientId);
         if (null == pClient) {
