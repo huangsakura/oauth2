@@ -1,6 +1,5 @@
 package com.huangjinlong.provider.bean.entity;
 
-import com.huangjinlong.provider.bean.enums.ClientStatus;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,14 +9,14 @@ import java.io.Serializable;
 import java.util.*;
 
 @Data
-public class PClient implements ClientDetails, Serializable {
+public class POClient implements ClientDetails, Serializable {
 
-    private static final long serialVersionUID = -4154776304730720312L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 主键
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 客户端标识，全局唯一
@@ -80,11 +79,6 @@ public class PClient implements ClientDetails, Serializable {
     private String grantTypes;
 
     /**
-     * 状态
-     */
-    private ClientStatus status;
-
-    /**
      * 自动授权的权限，逗号分隔
      *
      * 必须是 scope字段的子集或全集
@@ -96,9 +90,11 @@ public class PClient implements ClientDetails, Serializable {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Date createdDate;
 
-    private Date updateTime;
+    private Date stateDate;
+
+    private String state;
 
     @Override
     public String getClientId() {
@@ -152,22 +148,22 @@ public class PClient implements ClientDetails, Serializable {
 
     @Override
     public Set<String> getScope() {
-        Set<String> stringSet = new HashSet<>();
+        Set<String> result = new HashSet<>();
         if (StringUtils.isBlank(scope)) {
-            return stringSet;
+            return result;
         }
-        Collections.addAll(stringSet,scope.split(","));
-        return stringSet;
+        Collections.addAll(result,scope.split(","));
+        return result;
     }
 
     @Override
     public Set<String> getAuthorizedGrantTypes() {
-        Set<String> stringSet = new HashSet<>();
+        Set<String> result = new HashSet<>();
         if (StringUtils.isBlank(authorizedGrantTypes)) {
-            return stringSet;
+            return result;
         }
-        Collections.addAll(stringSet,authorizedGrantTypes.split(","));
-        return stringSet;
+        Collections.addAll(result,authorizedGrantTypes.split(","));
+        return result;
     }
 
     @Override
